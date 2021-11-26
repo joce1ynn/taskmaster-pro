@@ -93,6 +93,8 @@ $(".list-group").on("click", "p", function () {
 
 // editable field was un-focused
 $(".list-group").on("blur", "textarea", function () {
+  //blur is the thing will change if you click outside the focus area
+
   // get the textarea's current value/text
   var text = $(this).val().trim();
 
