@@ -176,3 +176,10 @@ loadTasks();
 
 // // plain javascript
 // document.querySelector("button.continue").innerHTML = "Next Step...";
+
+// trash icon can be dropped onto
+$(".card .list-group").sortable({
+  connectWith: $(".card .list-group"),
+});
+
+
