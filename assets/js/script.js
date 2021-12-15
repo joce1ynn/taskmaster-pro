@@ -60,7 +60,7 @@ $("#task-form-modal").on("shown.bs.modal", function () {
 });
 
 // save button in modal was clicked
-$("#task-form-modal .btn-primary").click(function () {
+$("#task-form-modal .btn-save").click(function () {
   // get form values
   var taskText = $("#modalTaskDescription").val();
   var taskDate = $("#modalDueDate").val();
@@ -195,15 +195,21 @@ $(".card .list-group").sortable({
   helper: "clone", //创建拖动元素的副本并移动副本而不是原始元素。防止在原始元素上意外触发点击事件
   activate: function (event) {
     console.log("activate", this);
+    $(this).addClass("dropover");
+    $(".bottom-trach").addClass("bottom-trash-drag")
   },
   deactivate: function (event) {
-    console.log("deactivate", this);
+    $(this).removeClass("dropover");
+    $(".bottom-trash").removeClass("bottom-trash-drag");
   },
   over: function (event) {
     console.log("over", event.target);
+    $(event.target).addClass("dropover-active");
+    $(".bottom-trash").addClass("bottom-trash-active");
   },
   out: function (event) {
-    console.log("out", event.target);
+    $(event.target).removeClass("dropover-active");
+    $(".bottom-trash").removeClass("bottom-trash-active");
   },
   update: function (event) {
     // array to store the task data in
@@ -278,6 +284,16 @@ var auditTask = function (taskEl) {
     $(taskEl).addClass("list-group-item-warning");
   }
 };
+
+// 5.5UI/UX improvements
+// 5.5.4 refresh page every 30 mins
+setInterval(function () {
+  $(".card .list-group-item").each(function (index, el) {
+    auditTask(el);
+  });
+}, 1000 * 60 * 30);
+
+//5.5.7
 
 // load tasks for the first time
 loadTasks();
