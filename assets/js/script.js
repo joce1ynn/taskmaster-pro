@@ -193,23 +193,19 @@ $(".card .list-group").sortable({
   scroll: false,
   tolerance: "pointer",
   helper: "clone", //创建拖动元素的副本并移动副本而不是原始元素。防止在原始元素上意外触发点击事件
-  activate: function (event) {
-    console.log("activate", this);
+  activate: function (event, ui) {
     $(this).addClass("dropover");
-    $(".bottom-trach").addClass("bottom-trash-drag")
+    $(".bottom-trash").addClass("bottom-trash-drag");
   },
-  deactivate: function (event) {
+  deactivate: function (event, ui) {
     $(this).removeClass("dropover");
     $(".bottom-trash").removeClass("bottom-trash-drag");
   },
   over: function (event) {
-    console.log("over", event.target);
     $(event.target).addClass("dropover-active");
-    $(".bottom-trash").addClass("bottom-trash-active");
   },
   out: function (event) {
     $(event.target).removeClass("dropover-active");
-    $(".bottom-trash").removeClass("bottom-trash-active");
   },
   update: function (event) {
     // array to store the task data in
