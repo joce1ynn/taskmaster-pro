@@ -216,7 +216,6 @@ $(".card .list-group").sortable({
       .children()
       .each(function () {
         var text = $(this).find("p").text().trim();
-
         var date = $(this).find("span").text().trim();
 
         // add task data to the temp array as an object
